@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
-import { LoginModal } from '../components/auth/LoginModal';
+
 
 import { DEFAULT_DATA, OdysseiaData } from './data';
 
@@ -255,7 +254,6 @@ export default function App() {
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
   const [activeAudioId, setActiveAudioId] = useState<string | null>(null);
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isLineupModalOpen, setIsLineupModalOpen] = useState(false);
   const lineupRef = useRef<HTMLDivElement>(null);
 
@@ -310,14 +308,6 @@ export default function App() {
     };
   }, [data.general.countdownDate]);
 
-  const location = useLocation();
-
-  // Removing auto-login trigger based on location state as per user request
-  // useEffect(() => {
-  //   if ((location.state as any)?.openLogin) {
-  //     setIsLoginOpen(true);
-  //   }
-  // }, [location.state]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -383,7 +373,7 @@ export default function App() {
             <a className="text-[#ffb869]/80 font-medium hover:text-[#ef9f27] transition-colors font-label uppercase text-xs tracking-widest" href="#localizacao">Localização</a>
           </div>
           <a
-            className="bg-primary-container text-on-primary-container px-6 py-2 rounded-lg font-label font-bold text-sm hover:scale-105 transition-transform duration-300 active:scale-95"
+            className="hidden md:block bg-primary-container text-on-primary-container px-6 py-2 rounded-lg font-label font-bold text-sm hover:scale-105 transition-transform duration-300 active:scale-95"
             href={data.tickets.find(t => t.isActive && (t.status === 'LOTE ATUAL' || t.status === 'DISPONÍVEL'))?.link || "#ingressos"}
             target={data.tickets.find(t => t.isActive && (t.status === 'LOTE ATUAL' || t.status === 'DISPONÍVEL'))?.link.startsWith('http') ? '_blank' : undefined}
           >
@@ -565,7 +555,7 @@ export default function App() {
           {/* GALERIA Section */}
           <div className="p-8 md:p-16 lg:p-20 py-24" id="galeria">
             <div className="text-center mb-16">
-              <h2 className="font-headline text-5xl md:text-6xl text-primary mb-6 drop-shadow-[0_0_20px_rgba(239,159,39,0.2)]">GALERIA</h2>
+              <h2 className="font-headline text-3xl md:text-5xl lg:text-6xl text-primary mb-6 drop-shadow-[0_0_20px_rgba(239,159,39,0.2)]">GALERIA</h2>
               <p className="text-white/40 font-label tracking-[0.4em] uppercase text-[10px] md:text-xs">Fragmentos de Realidade Primordial</p>
             </div>
 
@@ -596,7 +586,7 @@ export default function App() {
           {/* INGRESSOS Section */}
           <div className="p-8 md:p-16 lg:p-20 py-24" id="ingressos">
             <div className="text-center mb-20">
-              <h2 className="font-headline text-5xl md:text-6xl text-primary mb-6 drop-shadow-[0_0_20px_rgba(239,159,39,0.2)]">INGRESSOS</h2>
+              <h2 className="font-headline text-3xl md:text-5xl lg:text-6xl text-primary mb-6 drop-shadow-[0_0_20px_rgba(239,159,39,0.2)]">INGRESSOS</h2>
               <p className="text-white/40 font-label tracking-[0.4em] uppercase text-[10px] md:text-xs">Portais para a sua jornada</p>
             </div>
             <div className={`flex flex-wrap justify-center gap-16 ${data.tickets.filter(tier => tier.isActive).length === 2 ? 'md:grid md:grid-cols-2' : ''}`}>
@@ -627,7 +617,7 @@ export default function App() {
           {/* EXCURSAO Section */}
           <div className="p-8 md:p-16 lg:p-20 py-24" id="excursao">
             <div className="text-center mb-16">
-              <h2 className="font-headline text-5xl md:text-6xl text-primary mb-6 drop-shadow-[0_0_20px_rgba(239,159,39,0.2)]">EXCURSÕES</h2>
+              <h2 className="font-headline text-3xl md:text-5xl lg:text-6xl text-primary mb-6 drop-shadow-[0_0_20px_rgba(239,159,39,0.2)]">EXCURSÕES</h2>
               <p className="text-white/40 font-label tracking-[0.4em] uppercase text-[10px] md:text-xs">O Caminho para a Odysseia</p>
             </div>
 
@@ -668,7 +658,19 @@ export default function App() {
                   <div className="flex flex-col gap-3 py-4 border-y border-outline-variant/10">
                     <div className="flex items-center gap-3 text-on-surface-variant"><span className="material-symbols-outlined text-primary/70 text-[20px]">schedule</span><span className="text-sm font-light">{excursion.departureTime}</span></div>
                     <div className="flex items-center gap-3 text-on-surface-variant"><span className="material-symbols-outlined text-primary/70 text-[20px]">location_on</span><span className="text-sm font-light">{excursion.location}</span></div>
-                    <div className="flex items-center gap-3 text-on-surface-variant"><span className="material-symbols-outlined text-primary/70 text-[20px]">payments</span><span className="text-sm font-bold text-primary">{excursion.price}</span></div>
+                    {excursion.contactName && <div className="flex items-center gap-3 text-on-surface-variant"><span className="material-symbols-outlined text-primary/70 text-[20px]">person</span><span className="text-sm font-light">{excursion.contactName}</span></div>}
+                    {excursion.contactInstagram && (
+                      <div className="flex items-center gap-3 text-on-surface-variant">
+                        <svg viewBox="0 0 24 24" className="w-5 h-5 shrink-0 fill-current text-primary/70" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        {(() => {
+                          const raw = excursion.contactInstagram;
+                          const username = raw.includes('instagram.com/')
+                            ? raw.split('instagram.com/')[1].replace(/\//g, '')
+                            : raw.replace('@', '');
+                          return <a href={`https://instagram.com/${username}`} target="_blank" rel="noopener noreferrer" className="text-sm font-light hover:text-primary transition-colors">@{username}</a>;
+                        })()}
+                      </div>
+                    )}
                   </div>
                   <a href={`https://wa.me/${excursion.whatsappNumber}?text=${encodeURIComponent(`Olá! Gostaria de saber mais sobre a excursão saindo de ${excursion.city} para o Odysseia Open Air.`)}`} target="_blank" className="mt-auto flex w-full items-center justify-center gap-2 rounded-lg h-12 px-4 bg-surface-container border border-primary/30 text-primary font-label font-bold hover:bg-primary hover:text-on-primary transition-all">
                     <span className="material-symbols-outlined text-[20px]">forum</span><span>WhatsApp</span>
@@ -688,7 +690,7 @@ export default function App() {
           {/* LOCALIZACAO Section */}
           <div className="p-8 md:p-16 lg:px-20 py-24" id="localizacao">
             <div className="text-center mb-16">
-              <h2 className="font-headline text-5xl md:text-6xl text-primary mb-6 drop-shadow-[0_0_20px_rgba(239,159,39,0.2)]">LOCALIZAÇÃO</h2>
+              <h2 className="font-headline text-3xl md:text-5xl lg:text-6xl text-primary mb-6 drop-shadow-[0_0_20px_rgba(239,159,39,0.2)]">LOCALIZAÇÃO</h2>
               <p className="text-white/40 font-label tracking-[0.4em] uppercase text-[10px] md:text-xs">Fazenda Vilas Boas • Cruz das Almas - BA</p>
             </div>
 

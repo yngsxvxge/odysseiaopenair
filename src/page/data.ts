@@ -12,7 +12,8 @@ export interface Excursion {
   status: 'DISPONÍVEL' | 'VAGAS LIMITADAS' | 'ESGOTADO';
   departureTime: string;
   location: string;
-  price: string;
+  contactName: string;
+  contactInstagram: string;
   whatsappNumber: string;
   isActive: boolean;
 }
