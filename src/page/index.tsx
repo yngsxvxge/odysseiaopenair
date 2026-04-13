@@ -436,7 +436,7 @@ export default function App() {
               <div className="w-full lg:w-[40%] max-w-xl">
                 <div className="relative group p-1 bg-white/5 rounded-[32px] border border-white/10 overflow-hidden shadow-2xl">
                   <div className="absolute -inset-4 bg-primary/20 blur-3xl rounded-full opacity-30 group-hover:opacity-50 transition-opacity"></div>
-                  <div className="relative rounded-[28px] overflow-hidden aspect-video lg:aspect-[4/5] border border-white/10">
+                  <div className="relative rounded-[28px] overflow-hidden aspect-[4/3] sm:aspect-video lg:aspect-[4/5] border border-white/10">
                     {data.general.aboutMedia?.type === 'video' ? (
                       <video
                         key={data.general.aboutMedia.url}
