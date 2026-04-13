@@ -360,7 +360,7 @@ export default function App() {
       <nav className="fixed top-0 w-full z-50 border-b border-[#ef9f27]/30 bg-transparent dark:bg-[#1a1200]/90 backdrop-blur-md shadow-[0_4px_30px_rgba(239,159,39,0.05)]">
         <div className="flex justify-between items-center px-8 py-4 max-w-full">
           <div className="flex items-center">
-            <img src="/LOGOODY.png" alt="ODYSSEIA OPEN AIR" className="h-10 md:h-12 w-auto object-contain" />
+            <img src="/LOGOODY1.png" alt="ODYSSEIA OPEN AIR" className="h-10 md:h-12 w-auto object-contain" />
           </div>
 
           {/* Desktop Navigation */}
