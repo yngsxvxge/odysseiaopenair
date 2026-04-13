@@ -1,0 +1,99 @@
+/* Odysseia Theme for Ticket Selection Page */
+
+.odysseia-theme {
+  --theme-background: #0d0a06 !important;
+  --theme-surface: #1a1611 !important;
+  --theme-accent: #ef9f27 !important;
+  --theme-text-primary: #ffffff !important;
+  --theme-text-secondary: rgba(255, 255, 255, 0.6) !important;
+  --theme-border: rgba(255, 255, 255, 0.05) !important;
+  --theme-accent-contrast: #000000 !important;
+  
+  background-color: #0d0a06 !important;
+  color: white !important;
+  font-family: 'Outfit', sans-serif !important;
+}
+
+.odysseia-theme h2, 
+.odysseia-theme h3 {
+  font-family: 'Outfit', sans-serif !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.odysseia-theme [class*="mainCard"] {
+  background: rgba(26, 22, 17, 0.6) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5) !important;
+}
+
+.odysseia-theme [class*="organizerPill"],
+.odysseia-theme [class*="metaIconBox"] {
+  background: rgba(239, 159, 39, 0.1) !important;
+  color: #ef9f27 !important;
+}
+
+.odysseia-theme [class*="actionButton"] {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Product Widget Overrides */
+.odysseia-theme :global(.hi-product-row) {
+  background: rgba(13, 10, 6, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-radius: 20px !important;
+}
+
+.odysseia-theme :global(.hi-product-row:hover) {
+  border-color: rgba(239, 159, 39, 0.3) !important;
+  background: rgba(13, 10, 6, 0.6) !important;
+}
+
+.odysseia-theme :global(.hi-product-row.selected) {
+  background: rgba(239, 159, 39, 0.05) !important;
+  border-color: #ef9f27 !important;
+  box-shadow: 0 0 30px rgba(239, 159, 39, 0.1) !important;
+}
+
+.odysseia-theme :global(.hi-product-title h3) {
+  color: #ef9f27 !important;
+  font-weight: 800 !important;
+}
+
+.odysseia-theme :global(.hi-price-display) {
+  color: white !important;
+  font-weight: 900 !important;
+}
+
+.odysseia-theme :global(.hi-quantity-selector) {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 12px !important;
+}
+
+.odysseia-theme :global(.hi-quantity-btn) {
+  color: #ef9f27 !important;
+}
+
+.odysseia-theme :global(.hi-checkout-button),
+.odysseia-theme [class*="footerButton"] {
+  background: #ef9f27 !important;
+  color: #000 !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 20px rgba(239, 159, 39, 0.2) !important;
+}
+
+.odysseia-theme :global(.hi-checkout-button:hover) {
+  box-shadow: 0 15px 30px rgba(239, 159, 39, 0.4) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Hide some elements for a cleaner look as requested */
+.odysseia-theme [class*="statusBadges"] {
+  display: none !important;
+}

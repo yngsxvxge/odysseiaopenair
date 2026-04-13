@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --odys-background: #120d03;
+    --odys-on-background: #f7e9d1;
+    --odys-primary: #ef9f27;
+    --odys-secondary: #ffb869;
+    --odys-primary-container: #ef9f27;
+    --odys-on-primary: #1a1200;
+    --odys-on-primary-container: #1a1200;
+    --odys-surface-container: #2a1c04;
+    --odys-surface-container-low: #1f1607;
+    --odys-surface-container-lowest: #171006;
+    --odys-surface-container-high: #2f230f;
+    --odys-surface-container-highest: #342816;
+    --odys-on-surface: #fff4e1;
+    --odys-on-surface-variant: #d7c1a1;
+    --odys-outline-variant: #5e4a2d;
+  }
+}
+
+@layer components {
+  .chthonic-glow {
+    box-shadow: 0 0 60px rgba(239, 159, 39, 0.2);
+  }
+
+  .totem-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(239, 159, 39, 0.5), transparent);
+  }
+}
