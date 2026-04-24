@@ -149,15 +149,15 @@ function FloatingRadioPlayer({ activeAudioId, setActiveAudioId }: { activeAudioI
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 bg-[#1a1200]/90 backdrop-blur-md p-4 rounded-xl border border-[#ef9f27]/30 shadow-[0_0_30px_rgba(239,159,39,0.2)] flex flex-col gap-3 min-w-[240px] hover:border-[#ef9f27]/60 transition-colors">
+    <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 bg-[#1a1200]/90 backdrop-blur-md p-2 md:p-4 rounded-xl border border-[#ef9f27]/30 shadow-[0_0_30px_rgba(239,159,39,0.2)] flex flex-col gap-2 md:gap-3 min-w-[180px] md:min-w-[240px] hover:border-[#ef9f27]/60 transition-colors">
       <audio ref={audioRef} src="https://esoterica.servemp3.com:444/listen/psytrance_progressivepsytrance/radio.mp3" />
 
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="material-symbols-outlined text-[#ef9f27] text-xl animate-pulse">sensors</span>
+          <span className="material-symbols-outlined text-[#ef9f27] text-base md:text-xl animate-pulse">sensors</span>
           <div className="flex flex-col">
-            <span className="font-label text-xs font-bold uppercase tracking-widest text-[#ef9f27]">Esoterica Rádio</span>
-            <span className="font-label text-[9px] uppercase tracking-wider text-[#ffb869]/60">{isPlaying ? 'Tocando agora' : 'Pausado'}</span>
+            <span className="font-label text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#ef9f27]">Esoterica Rádio</span>
+            <span className="font-label text-[8px] md:text-[9px] uppercase tracking-wider text-[#ffb869]/60">{isPlaying ? 'Tocando agora' : 'Pausado'}</span>
           </div>
         </div>
         {isPlaying && (
@@ -168,18 +168,18 @@ function FloatingRadioPlayer({ activeAudioId, setActiveAudioId }: { activeAudioI
         )}
       </div>
 
-      <div className="flex items-center gap-4 mt-2">
+      <div className="flex items-center gap-2 md:gap-4 mt-1 md:mt-2">
         <button
           onClick={togglePlay}
-          className="h-10 w-10 shrink-0 flex items-center justify-center rounded-full bg-[#ef9f27] text-[#462a00] hover:scale-105 transition-transform"
+          className="h-8 w-8 md:h-10 md:w-10 shrink-0 flex items-center justify-center rounded-full bg-[#ef9f27] text-[#462a00] hover:scale-105 transition-transform"
         >
-          <span className="material-symbols-outlined text-xl">
+          <span className="material-symbols-outlined text-base md:text-xl">
             {isPlaying ? 'pause' : 'play_arrow'}
           </span>
         </button>
 
-        <div className="flex items-center gap-2 w-full">
-          <span className="material-symbols-outlined text-[#ffb869]/60 text-sm">volume_down</span>
+        <div className="flex items-center gap-1 md:gap-2 w-full">
+          <span className="material-symbols-outlined text-[#ffb869]/60 text-xs md:text-sm">volume_down</span>
           <input
             type="range"
             min="0"
@@ -189,7 +189,7 @@ function FloatingRadioPlayer({ activeAudioId, setActiveAudioId }: { activeAudioI
             onChange={handleVolumeChange}
             className="w-full h-1 bg-[#281f06] rounded-lg appearance-none cursor-pointer accent-[#ef9f27]"
           />
-          <span className="material-symbols-outlined text-[#ffb869]/60 text-sm">volume_up</span>
+          <span className="material-symbols-outlined text-[#ffb869]/60 text-xs md:text-sm">volume_up</span>
         </div>
       </div>
     </div>
@@ -383,10 +383,10 @@ export default function App() {
       </nav>
 
       <Scrollytelling
-        totalFrames={51}
+        totalFrames={39}
         zoomFactor={1.35}
-        wrapperHeight="350vh"
-        frameUrlTemplate={(index) => `/frames/ezgif-frame-${String(index).padStart(3, '0')}.webp`}
+        wrapperHeight="180vh"
+        frameUrlTemplate={(index) => `/frames/Composição 1_${String(index - 1).padStart(5, '0')}.webp`}
       >
         {/* Hero Section Content over the Canvas */}
         <section id="home" className="relative w-full h-screen flex items-center justify-center overflow-hidden">
@@ -410,8 +410,9 @@ export default function App() {
             </div>
           </div>
 
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce pointer-events-auto">
-            <span className="material-symbols-outlined text-primary opacity-50">keyboard_double_arrow_down</span>
+          <div className="absolute bottom-28 md:bottom-10 inset-x-0 z-20 flex flex-col items-center justify-center gap-2 pointer-events-auto animate-bounce">
+            <span className="font-label text-[10px] uppercase tracking-[0.3em] text-primary/80">Role para explorar</span>
+            <span className="material-symbols-outlined text-primary text-3xl opacity-80">keyboard_double_arrow_down</span>
           </div>
         </section>
       </Scrollytelling>
@@ -437,24 +438,11 @@ export default function App() {
                 <div className="relative group p-1 bg-white/5 rounded-[32px] border border-white/10 overflow-hidden shadow-2xl">
                   <div className="absolute -inset-4 bg-primary/20 blur-3xl rounded-full opacity-30 group-hover:opacity-50 transition-opacity"></div>
                   <div className="relative rounded-[28px] overflow-hidden aspect-[4/3] sm:aspect-video lg:aspect-[4/5] border border-white/10">
-                    {data.general.aboutMedia?.type === 'video' ? (
-                      <video
-                        key={data.general.aboutMedia.url}
-                        className={`w-full h-full object-cover transition-all duration-1000 scale-105 group-hover:scale-100 object-${data.general.aboutMedia.position || 'center'}`}
-                        src={data.general.aboutMedia.url}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                      />
-                    ) : (
-                      <img
-                        src={data.general.aboutMedia?.url || '/bg2.png'}
-                        className={`w-full h-full object-cover transition-all duration-1000 scale-105 group-hover:scale-100 object-${data.general.aboutMedia?.position || 'center'}`}
-                        alt="Odysseia"
-                        referrerPolicy="no-referrer"
-                      />
-                    )}
+                    <img
+                      src="/image.webp"
+                      className="w-full h-full object-cover transition-all duration-1000 scale-105 group-hover:scale-100 object-center"
+                      alt="Odysseia"
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                   </div>
                 </div>
@@ -653,6 +641,9 @@ export default function App() {
                 <div key={excursion.id} className="bg-[#1a1611]/80 backdrop-blur-xl rounded-3xl p-8 flex flex-col gap-6 border border-white/5 hover:border-primary/40 transition-all duration-500 group shadow-2xl">
                   <div className="flex flex-col gap-1">
                     <h4 className="font-headline text-xl md:text-2xl text-on-surface leading-tight">{excursion.city}</h4>
+                    {excursion.excursionName && excursion.excursionName !== excursion.city && (
+                      <p className="text-sm text-primary font-label font-bold">{excursion.excursionName}</p>
+                    )}
                     <p className="text-sm text-secondary font-label">{excursion.city} ({excursion.state})</p>
                   </div>
                   <div className="flex flex-col gap-3 py-4 border-y border-outline-variant/10">
@@ -782,6 +773,18 @@ export default function App() {
           </div>
         </div>
       </footer>
+      <a
+        href="https://wa.me/5575991279385?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Odysseia%20Open%20Air."
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Falar com atendimento"
+        className="fixed bottom-6 left-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:scale-110 hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] transition-all"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.549 4.107 1.515 5.842L.057 23.486a.5.5 0 0 0 .614.614l5.644-1.458A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.013-1.374l-.36-.214-3.724.961.982-3.63-.234-.374A9.818 9.818 0 1 1 12 21.818z"/>
+        </svg>
+      </a>
       <FloatingRadioPlayer activeAudioId={activeAudioId} setActiveAudioId={setActiveAudioId} />
     </div>
   );

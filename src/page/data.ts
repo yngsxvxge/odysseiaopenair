@@ -8,6 +8,7 @@ import { DEFAULT_EXCURSIONS, DEFAULT_GALLERY, DEFAULT_LINEUP, DEFAULT_TICKETS } 
 export interface Excursion {
   id: string;
   city: string;
+  excursionName?: string;
   state: string;
   status: 'DISPONÍVEL' | 'VAGAS LIMITADAS' | 'ESGOTADO';
   departureTime: string;
