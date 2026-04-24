@@ -382,7 +382,7 @@ export default function App() {
       </nav>
 
       <Scrollytelling
-        totalFrames={39}
+        totalFrames={38}
         zoomFactor={1.35}
         wrapperHeight="180vh"
         frameUrlTemplate={(index) => `/frames/Composição 1_${String(index - 1).padStart(5, '0')}.webp`}
