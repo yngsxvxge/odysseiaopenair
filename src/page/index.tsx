@@ -325,7 +325,6 @@ export default function App() {
     <div
       className="text-on-background font-body selection:bg-primary-container selection:text-on-primary-container min-h-screen"
       style={{
-        backgroundImage: 'url("/bg2.png")',
         backgroundAttachment: 'fixed',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -360,7 +359,7 @@ export default function App() {
       <nav className="fixed top-0 w-full z-50 border-b border-[#ef9f27]/30 bg-transparent dark:bg-[#1a1200]/90 backdrop-blur-md shadow-[0_4px_30px_rgba(239,159,39,0.05)]">
         <div className="flex justify-between items-center px-8 py-4 max-w-full">
           <div className="flex items-center">
-            <img src="/LOGOODY1.png" alt="ODYSSEIA OPEN AIR" className="h-10 md:h-12 w-auto object-contain" />
+            <img src="/LOGOODY1.png" alt="ODYSSEIA OPEN AIR" className="h-10 md:h-12 w-auto object-contain" width={836} height={167} />
           </div>
 
           {/* Desktop Navigation */}
@@ -441,6 +440,8 @@ export default function App() {
                     <img
                       src="/image.webp"
                       className="w-full h-full object-cover transition-all duration-1000 scale-105 group-hover:scale-100 object-center"
+                      width={1536}
+                      height={1148}
                       alt="Odysseia"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
@@ -551,7 +552,7 @@ export default function App() {
               {data.gallery.map((edition) => (
                 <div key={edition.id} className="group relative bg-[#0d0a06]/40 rounded-2xl overflow-hidden border border-white/5 hover:-translate-y-2 flex flex-col h-full shadow-lg transition-all duration-500">
                   <div className="aspect-[4/3] w-full overflow-hidden relative">
-                    <img className="w-full h-full object-cover  group-hover:scale-105 transition-all duration-700" src={edition.cover} alt={edition.title} />
+                    <img className="w-full h-full object-cover  group-hover:scale-105 transition-all duration-700" src={edition.cover} alt={edition.title} loading="lazy" width={800} height={600} />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0d0a06] via-transparent to-transparent opacity-60"></div>
                   </div>
                   <div className="p-6 flex flex-col flex-1">
@@ -728,7 +729,7 @@ export default function App() {
                 {data.lineup.filter(dj => dj.isConfirmed).map(artist => (
                   <div key={artist.id} className="bg-[#0d0a06]/40 p-6 rounded-2xl border border-white/5 flex flex-col">
                     <div className="mb-4 overflow-hidden rounded-lg aspect-square">
-                      <img className={`w-full h-full object-cover grayscale transition-all duration-500 ${artist.position || 'object-center'}`} src={artist.img} alt={artist.name} referrerPolicy="no-referrer" />
+                      <img className={`w-full h-full object-cover grayscale transition-all duration-500 ${artist.position || 'object-center'}`} src={artist.img} alt={artist.name} referrerPolicy="no-referrer" loading="lazy" />
                     </div>
                     <h3 className="font-headline text-2xl text-on-surface mb-1">{artist.name}</h3>
                     <p className="font-label text-primary text-[10px] uppercase tracking-widest mb-2">{artist.genre}</p>
@@ -757,7 +758,7 @@ export default function App() {
         <div className="w-full py-16 px-8 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
           <div className="flex flex-col items-center md:items-start gap-4">
             <div className="flex items-center">
-              <img src="/LOGOODY.png" alt="ODYSSEIA" className="h-12 w-auto object-contain" />
+              <img src="/LOGOODY.png" alt="ODYSSEIA" className="h-12 w-auto object-contain" width={836} height={167} />
             </div>
             <p className="font-label text-xs text-[#ffb869]/60 max-w-xs text-center md:text-left">A celebração mística que une a natureza e o som primordial em uma experiência de imersão total.</p>
           </div>
