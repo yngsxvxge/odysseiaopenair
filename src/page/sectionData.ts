@@ -186,5 +186,30 @@ export const DEFAULT_EXCURSIONS: Excursion[] = [
     contactInstagram: 'https://www.instagram.com/bvnave075/',
     whatsappNumber: '75981900935',
     isActive: true,
+  },{
+    id: '8',
+    city: 'Camaçari',
+    excursionName: '',
+    state: 'BA',
+    status: 'VAGAS LIMITADAS',
+    departureTime: 'A definir',
+    location: 'Camaçari e Orla de Camaro ',
+    contactName: 'Ericson Lima',
+    contactInstagram: 'https://www.instagram.com/eric.limx99/',
+    whatsappNumber: '71982808712',
+    isActive: true,
+  },{
+    id: '9',
+    city: 'Ipiaú',
+    excursionName: 'Terra de Insannos 73',
+    state: 'BA',
+    status: 'VAGAS LIMITADAS',
+    departureTime: 'A definir',
+    location: 'Jequié, Ipiaú ',
+    contactName: 'Fagner',
+    contactInstagram: 'https://www.instagram.com/terra_de_insannos73/',
+    whatsappNumber: '73981959175',
+    isActive: true,
   }
+  
 ];
