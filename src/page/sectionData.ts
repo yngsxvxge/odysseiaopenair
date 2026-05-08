@@ -210,6 +210,18 @@ export const DEFAULT_EXCURSIONS: Excursion[] = [
     contactInstagram: 'https://www.instagram.com/terra_de_insannos73/',
     whatsappNumber: '73981959175',
     isActive: true,
+  },{
+    id: '10',
+    city: 'Salvador',
+    excursionName: 'Expresso071',
+    state: 'BA',
+    status: 'VAGAS LIMITADAS',
+    departureTime: 'A definir',
+    location: 'Hiperposto',
+    contactName: 'Alpha Taxi',
+    contactInstagram: 'https://www.instagram.com/expresso.071/',
+    whatsappNumber: '71991282042',
+    isActive: true,
   }
   
 ];
