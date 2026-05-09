@@ -255,7 +255,23 @@ export default function App() {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
   const [activeAudioId, setActiveAudioId] = useState<string | null>(null);
   const [isLineupModalOpen, setIsLineupModalOpen] = useState(false);
+  const [isPastScrollytelling, setIsPastScrollytelling] = useState(false);
+  const afterScrollytellingRef = useRef<HTMLDivElement>(null);
   const lineupRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = afterScrollytellingRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setIsPastScrollytelling(true);
+        else setIsPastScrollytelling(false);
+      },
+      { threshold: 0 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const scrollLineup = (direction: 'left' | 'right') => {
     if (lineupRef.current) {
@@ -409,14 +425,14 @@ export default function App() {
             </div>
           </div>
 
-          <div className="absolute bottom-28 md:bottom-10 inset-x-0 z-20 flex flex-col items-center justify-center gap-2 pointer-events-auto animate-bounce">
+          <div className="absolute bottom-6 md:bottom-10 inset-x-0 z-20 flex flex-col items-center justify-center gap-2 pointer-events-auto animate-bounce">
             <span className="font-label text-[10px] uppercase tracking-[0.3em] text-primary/80">Role para explorar</span>
             <span className="material-symbols-outlined text-primary text-3xl opacity-80">keyboard_double_arrow_down</span>
           </div>
         </section>
       </Scrollytelling>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8 mb-32 -mt-4 md:-mt-8 relative z-30">
+      <div ref={afterScrollytellingRef} className="max-w-7xl mx-auto px-4 md:px-8 mb-32 -mt-4 md:-mt-8 relative z-30">
         <div className="bg-[#1a1611]/60 backdrop-blur-2xl rounded-3xl border border-white/5 shadow-[0_30px_60px_rgba(0,0,0,0.6)] overflow-hidden">
 
           {/* SOBRE Section */}
@@ -786,7 +802,7 @@ export default function App() {
           <path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.549 4.107 1.515 5.842L.057 23.486a.5.5 0 0 0 .614.614l5.644-1.458A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.013-1.374l-.36-.214-3.724.961.982-3.63-.234-.374A9.818 9.818 0 1 1 12 21.818z"/>
         </svg>
       </a>
-      <FloatingRadioPlayer activeAudioId={activeAudioId} setActiveAudioId={setActiveAudioId} />
+      {isPastScrollytelling && <FloatingRadioPlayer activeAudioId={activeAudioId} setActiveAudioId={setActiveAudioId} />}
     </div>
   );
 }

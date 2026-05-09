@@ -202,15 +202,7 @@ export default function Scrollytelling({
         </div>
       </div>
       
-      {/* GSAP Scroll To Top Utility */}
-      {isLoaded && (
-        <button 
-          onClick={() => gsap.to(window, { scrollTo: 0, duration: 1.5, ease: 'power3.inOut' })}
-          className="fixed bottom-8 right-8 z-40 bg-background border border-[#ef9f27]/30 text-on-background px-6 py-3 rounded-full transition-all pointer-events-auto shadow-2xl hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(239,159,39,0.3)] hover:border-[#ef9f27]/80"
-        >
-          <span className="text-[10px] tracking-widest uppercase font-bold text-[#ef9f27]">Scroll to Top</span>
-        </button>
-      )}
+
 
       {/* Loading Overlay */}
       {!isLoaded && (
