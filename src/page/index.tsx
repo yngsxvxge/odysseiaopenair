@@ -468,7 +468,7 @@ export default function App() {
           <div className="p-8 md:p-16 lg:px-20 py-24 flex flex-col items-center" id="lineup">
             <div className="flex flex-col items-center text-center mb-16">
               <h2 className="font-headline text-5xl md:text-6xl text-primary mb-6 drop-shadow-[0_0_20px_rgba(239,159,39,0.2)]">LINE-UP</h2>
-              <p className="font-label tracking-[0.4em] text-white/50 text-[10px] md:text-xs uppercase mb-10">Conexão Sonora com a Natureza</p>
+             
             </div>
 
             {/* Carousel Container */}
