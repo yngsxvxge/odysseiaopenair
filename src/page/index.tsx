@@ -89,7 +89,7 @@ function DJSoundCloudPlayer({ url, artistId, activeAudioId, setActiveAudioId }: 
           height="120"
           scrolling="no"
           frameBorder="no"
-          allow="autoplay"
+          allow="autoplay; encrypted-media"
           src={`https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}&color=%23ef9f27&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false`}
         ></iframe>
       </div>
@@ -328,11 +328,7 @@ export default function App() {
   useEffect(() => {
     setTimeout(() => {
       if (lineupRef.current) {
-        const activeDJs = data.lineup.filter(dj => dj.isConfirmed);
-        if (activeDJs.length > 0) {
-          const itemWidth = 332;
-          lineupRef.current.scrollLeft = activeDJs.length * itemWidth;
-        }
+        lineupRef.current.scrollLeft = 0;
       }
     }, 500);
   }, []);
@@ -468,8 +464,7 @@ export default function App() {
           </div>
 
           <div className="h-px w-full bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
-          {/* PARTE DO LINUP COMENTADA */}
-           {/* LINE UP Section 
+          {/* LINE UP Section */}
           <div className="p-8 md:p-16 lg:px-20 py-24 flex flex-col items-center" id="lineup">
             <div className="flex flex-col items-center text-center mb-16">
               <h2 className="font-headline text-5xl md:text-6xl text-primary mb-6 drop-shadow-[0_0_20px_rgba(239,159,39,0.2)]">LINE-UP</h2>
@@ -482,9 +477,9 @@ export default function App() {
               </button>
             </div>
 
-            {/* Carousel Container 
+            {/* Carousel Container */}
             <div className="w-full max-w-[1240px] mx-auto relative group/lineup">
-              {/* Navigation Buttons 
+              {/* Navigation Buttons */}
               <button
                 onClick={() => scrollLineup('left')}
                 className="absolute -left-4 md:-left-12 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-primary/20 backdrop-blur-xl border border-primary/30 text-primary flex items-center justify-center opacity-0 group-hover/lineup:opacity-100 transition-all hover:bg-primary/40 shadow-xl"
@@ -500,33 +495,15 @@ export default function App() {
 
               <div
                 ref={lineupRef}
-                onScroll={(e) => {
-                  const el = e.currentTarget;
-                  const activeDJs = data.lineup.filter(dj => dj.isConfirmed);
-                  if (activeDJs.length === 0) return;
-
-                  const itemWidth = 332; // 300px + 32px gap
-                  const totalWidth = activeDJs.length * itemWidth;
-
-                  // Infinite scroll stabilization
-                  if (el.scrollLeft < itemWidth) {
-                    el.scrollLeft += totalWidth;
-                  } else if (el.scrollLeft > totalWidth * 2 - itemWidth) {
-                    el.scrollLeft -= totalWidth;
-                  }
-                }}
-                className="flex overflow-x-auto snap-x snap-mandatory gap-8 pb-12 pt-4 px-4 scrollbar-hide w-full"
+                className="flex justify-center overflow-x-auto snap-x snap-mandatory gap-4 md:gap-8 pb-12 pt-4 px-4 scrollbar-hide w-full"
                 style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               >
                 {(() => {
                   const activeDJs = data.lineup.filter(dj => dj.isConfirmed);
                   if (activeDJs.length === 0) return null;
 
-                  // Triplicamos o array para permitir rolagem infinita fluida
-                  const infiniteDJs = [...activeDJs, ...activeDJs, ...activeDJs];
-
-                  return infiniteDJs.map((artist, idx) => (
-                    <div id={`dj-${artist.id}-${idx}`} key={`${artist.id}-${idx}`} className="group bg-[#0d0a06]/40 p-6 rounded-2xl hover:bg-[#0d0a06]/60 transition-all duration-500 hover:-translate-y-2 border border-white/5 flex flex-col min-w-[260px] md:min-w-[300px] w-[300px] snap-center shrink-0 relative overflow-hidden items-center text-center shadow-xl">
+                  return activeDJs.map((artist) => (
+                    <div id={`dj-${artist.id}`} key={artist.id} className="group bg-[#0d0a06]/40 p-4 md:p-6 rounded-2xl hover:bg-[#0d0a06]/60 transition-all duration-500 hover:-translate-y-2 border border-white/5 flex flex-col min-w-[200px] w-[200px] md:min-w-[300px] md:w-[300px] snap-center shrink-0 relative overflow-hidden items-center text-center shadow-xl">
                       <div className="mb-5 overflow-hidden rounded-lg aspect-square w-full">
                         <img className={`w-full h-full object-cover grayscale group-hover:scale-110 group-hover:grayscale-0 transition-all duration-700 ${artist.position || 'object-center'}`} src={artist.img} alt={artist.name} referrerPolicy="no-referrer" />
                       </div>
@@ -553,7 +530,7 @@ export default function App() {
                 })()}
               </div>
             </div>
-          </div>*/}
+          </div>
 
           <div className="h-px w-full bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
 

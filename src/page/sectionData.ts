@@ -2,27 +2,17 @@ import type { DJ, TicketTier, GalleryEdition, Excursion } from './data';
 
 export const DEFAULT_LINEUP: DJ[] = [
   {
-    id: 'macedo',
-    name: 'MACEDO',
-    genre: 'PROGRESSIVE / PSYTECHNO',
+    id: 'wisllow',
+    name: 'WISLLOW',
+    genre: 'PROGRESSIVE',
     time: '',
-    img: 'https://instagram.fval1-1.fna.fbcdn.net/v/t51.82787-15/587277690_18067024754528362_4754021684688367976_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=100&ig_cache_key=Mzc3ODIxNzA0NzY3NTcwMjMwMg%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTkxOS5zZHIuQzMifQ%3D%3D&_nc_ohc=0v6EOCqOPEYQ7kNvwHhOSLJ&_nc_oc=AdoJZJV5P-mA6rqOcdzXRKh8zxzAbhC4HJ85HmtnI85GhrtSGoIHRQ28fEaKk0fKF2E&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fval1-1.fna&_nc_gid=SWupsgmm9flEfIR9rNl_xg&_nc_ss=7a32e&oh=00_Af1DhdekV-NS0IY9NadjjESxqMZWK_0Pp3CNiXnxQFQQQw&oe=69DB9626',
+    img: './wisllow.jpeg',
     position: 'object-top',
-    scUrl: 'https://soundcloud.com/macedobr/macedo-live-maze-a-delic-full-set-psytechnopsytrance',
-    instagramUrl: 'https://www.instagram.com/macedobr/',
+    scUrl: 'https://soundcloud.com/wisllowmusic/wisllow-takitahoriginal-mix-ubuntu-records',
+    instagramUrl: 'https://www.instagram.com/wisllowmusic/',
     isConfirmed: true,
   },
-{
-    id: 'maximum',
-    name: 'MAXIMUM',
-    genre: 'PROGRESSIVE / PSYTECHNO',
-    time: '',
-    img: 'https://instagram.fval1-1.fna.fbcdn.net/v/t51.82787-15/587277690_18067024754528362_4754021684688367976_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=100&ig_cache_key=Mzc3ODIxNzA0NzY3NTcwMjMwMg%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTkxOS5zZHIuQzMifQ%3D%3D&_nc_ohc=0v6EOCqOPEYQ7kNvwHhOSLJ&_nc_oc=AdoJZJV5P-mA6rqOcdzXRKh8zxzAbhC4HJ85HmtnI85GhrtSGoIHRQ28fEaKk0fKF2E&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fval1-1.fna&_nc_gid=SWupsgmm9flEfIR9rNl_xg&_nc_ss=7a32e&oh=00_Af1DhdekV-NS0IY9NadjjESxqMZWK_0Pp3CNiXnxQFQQQw&oe=69DB9626',
-    position: 'object-top',
-    scUrl: 'https://soundcloud.com/macedobr/macedo-live-maze-a-delic-full-set-psytechnopsytrance',
-    instagramUrl: 'https://www.instagram.com/macedobr/',
-    isConfirmed: true,
-  },
+
 ];
 
 export const DEFAULT_TICKETS: TicketTier[] = [
