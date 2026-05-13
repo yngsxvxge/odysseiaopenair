@@ -469,12 +469,6 @@ export default function App() {
             <div className="flex flex-col items-center text-center mb-16">
               <h2 className="font-headline text-5xl md:text-6xl text-primary mb-6 drop-shadow-[0_0_20px_rgba(239,159,39,0.2)]">LINE-UP</h2>
               <p className="font-label tracking-[0.4em] text-white/50 text-[10px] md:text-xs uppercase mb-10">Conexão Sonora com a Natureza</p>
-              <button
-                onClick={() => setIsLineupModalOpen(true)}
-                className="font-label text-primary uppercase text-[10px] tracking-[0.2em] border border-primary/30 px-10 py-4 rounded-full hover:bg-primary/10 transition-all hover:scale-105 active:scale-95 font-bold"
-              >
-                Ver Todos os Confirmados
-              </button>
             </div>
 
             {/* Carousel Container */}
@@ -503,7 +497,7 @@ export default function App() {
                   if (activeDJs.length === 0) return null;
 
                   return activeDJs.map((artist) => (
-                    <div id={`dj-${artist.id}`} key={artist.id} className="group bg-[#0d0a06]/40 p-4 md:p-6 rounded-2xl hover:bg-[#0d0a06]/60 transition-all duration-500 hover:-translate-y-2 border border-white/5 flex flex-col min-w-[200px] w-[200px] md:min-w-[300px] md:w-[300px] snap-center shrink-0 relative overflow-hidden items-center text-center shadow-xl">
+                    <div id={`dj-${artist.id}`} key={artist.id} className="group bg-[#0d0a06]/40 p-4 md:p-6 lg:p-8 rounded-2xl hover:bg-[#0d0a06]/60 transition-all duration-500 hover:-translate-y-2 border border-white/5 flex flex-col min-w-[200px] w-[200px] md:min-w-[300px] md:w-[300px] lg:min-w-[400px] lg:w-[400px] snap-center shrink-0 relative overflow-hidden items-center text-center shadow-xl">
                       <div className="mb-5 overflow-hidden rounded-lg aspect-square w-full">
                         <img className={`w-full h-full object-cover grayscale group-hover:scale-110 group-hover:grayscale-0 transition-all duration-700 ${artist.position || 'object-center'}`} src={artist.img} alt={artist.name} referrerPolicy="no-referrer" />
                       </div>
