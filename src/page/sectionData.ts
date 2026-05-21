@@ -47,17 +47,7 @@ export const DEFAULT_TICKETS: TicketTier[] = [
     highlighted: true,
     isActive: true,
   },  
-  {
-    id: 'tier3',
-    title: 'Combo VIP',
-    subtitle: 'Divine Experience',
-    price: 'R$ 320',
-    status: 'DISPONÍVEL',
-    features: ['Backstage Access', 'Banheiros Privativos Luxo', 'Pulseira RFID Cashless'],
-    link: 'https://app.hi.events/event/7241/odysseia-o-exilir-de-calypso',
-    highlighted: false,
-    isActive: false,
-  },
+ 
 ];
 
 export const DEFAULT_GALLERY: GalleryEdition[] = [
