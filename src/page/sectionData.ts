@@ -11,16 +11,26 @@ export const DEFAULT_LINEUP: DJ[] = [
     scUrl: 'https://soundcloud.com/wisllowmusic/wisllow-takitahoriginal-mix-ubuntu-records',
     instagramUrl: 'https://www.instagram.com/wisllowmusic/',
     isConfirmed: true,
-  },
+  },{
+    id: 'Anjuna',
+    name: 'ANJUNA',
+    genre: 'GOA',
+    time: '',
+    img: './anjuna.png',
+    position: 'object-top',
+    scUrl: 'https://soundcloud.com/neotropicah/omeyocan-full-set-goanitzhogoa?si=67fa743eb3bd4e7caa16db54c26c6fae&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+    instagramUrl: 'https://www.instagram.com/goa.anjuna/',
+    isConfirmed: true,
+  }
 
 ];
 
 export const DEFAULT_TICKETS: TicketTier[] = [
   {
     id: 'tier2',
-    title: 'Lote Promocional',
+    title: '1º Lote',
     subtitle: 'Meia entrada',
-    price: 'R$ 40',
+    price: 'R$ 50',
     status: 'LOTE ATUAL',
     features: ['Acesso aos 2 dias de evento', 'Área de Camping Standard', 'Água free no Chillout'],
     link: 'https://app.hi.events/event/7241/odysseia-o-exilir-de-calypso',
@@ -28,7 +38,7 @@ export const DEFAULT_TICKETS: TicketTier[] = [
     isActive: true,
   },{
     id: 'tier1',
-    title: 'Lote Promocional',
+    title: '1º Lote ',
     subtitle: 'Inteira',
     price: 'R$ 80',
     status: 'LOTE ATUAL',
@@ -211,6 +221,18 @@ export const DEFAULT_EXCURSIONS: Excursion[] = [
     contactName: 'Alpha Taxi',
     contactInstagram: 'https://www.instagram.com/expresso.071/',
     whatsappNumber: '71991282042',
+    isActive: true,
+  },{
+    id: '11',
+    city: 'Petrolina',
+    excursionName: 'Vale Trips',
+    state: 'PE',
+    status: 'VAGAS LIMITADAS',
+    departureTime: 'A definir',
+    location: 'Hiperposto',
+    contactName: 'Luan Jonathan',
+    contactInstagram: 'https://www.instagram.com/valetrips874/',
+    whatsappNumber: '87981289766',
     isActive: true,
   }
   
