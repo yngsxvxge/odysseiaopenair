@@ -40,7 +40,7 @@ export const DEFAULT_TICKETS: TicketTier[] = [
     id: 'tier1',
     title: '1º Lote ',
     subtitle: 'Inteira',
-    price: 'R$ 80',
+    price: 'R$ 100',
     status: 'LOTE ATUAL',
     features: [],
     link: 'https://app.hi.events/event/7241/odysseia-o-exilir-de-calypso',
