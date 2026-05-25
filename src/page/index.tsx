@@ -275,7 +275,8 @@ export default function App() {
 
   const scrollLineup = (direction: 'left' | 'right') => {
     if (lineupRef.current) {
-      const scrollAmount = 400;
+      const firstCard = lineupRef.current.querySelector('[id^="dj-"]') as HTMLElement | null;
+      const scrollAmount = firstCard ? firstCard.offsetWidth + 16 : 220;
       lineupRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
@@ -476,27 +477,30 @@ export default function App() {
               {/* Navigation Buttons */}
               <button
                 onClick={() => scrollLineup('left')}
-                className="absolute -left-4 md:-left-12 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-primary/20 backdrop-blur-xl border border-primary/30 text-primary flex items-center justify-center opacity-0 group-hover/lineup:opacity-100 transition-all hover:bg-primary/40 shadow-xl"
+                className="absolute -left-4 md:-left-12 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-primary/20 backdrop-blur-xl border border-primary/30 text-primary flex items-center justify-center opacity-100 md:opacity-0 md:group-hover/lineup:opacity-100 transition-all hover:bg-primary/40 shadow-xl"
               >
                 <span className="material-symbols-outlined">chevron_left</span>
               </button>
               <button
                 onClick={() => scrollLineup('right')}
-                className="absolute -right-4 md:-right-12 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-primary/20 backdrop-blur-xl border border-primary/30 text-primary flex items-center justify-center opacity-0 group-hover/lineup:opacity-100 transition-all hover:bg-primary/40 shadow-xl"
+                className="absolute -right-4 md:-right-12 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-primary/20 backdrop-blur-xl border border-primary/30 text-primary flex items-center justify-center opacity-100 md:opacity-0 md:group-hover/lineup:opacity-100 transition-all hover:bg-primary/40 shadow-xl"
               >
                 <span className="material-symbols-outlined">chevron_right</span>
               </button>
 
               <div
                 ref={lineupRef}
-                className="flex justify-center overflow-x-auto snap-x snap-mandatory gap-4 md:gap-8 pb-12 pt-4 px-4 scrollbar-hide w-full"
-                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                className="flex overflow-x-auto snap-x snap-mandatory gap-4 md:gap-8 pb-12 pt-4 scrollbar-hide w-full"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', scrollPaddingLeft: '1rem', scrollPaddingRight: '1rem' }}
               >
                 {(() => {
                   const activeDJs = data.lineup.filter(dj => dj.isConfirmed);
                   if (activeDJs.length === 0) return null;
 
-                  return activeDJs.map((artist) => (
+                  return (
+                    <>
+                      <div className="shrink-0 w-4 md:w-8" aria-hidden="true" />
+                      {activeDJs.map((artist) => (
                     <div id={`dj-${artist.id}`} key={artist.id} className="group bg-[#0d0a06]/40 p-4 md:p-6 lg:p-8 rounded-2xl hover:bg-[#0d0a06]/60 transition-all duration-500 hover:-translate-y-2 border border-white/5 flex flex-col min-w-[200px] w-[200px] md:min-w-[300px] md:w-[300px] lg:min-w-[400px] lg:w-[400px] snap-center shrink-0 relative overflow-hidden items-center text-center shadow-xl">
                       <div className="mb-5 overflow-hidden rounded-lg aspect-square w-full">
                         <img className={`w-full h-full object-cover grayscale group-hover:scale-110 group-hover:grayscale-0 transition-all duration-700 ${artist.position || 'object-center'}`} src={artist.img} alt={artist.name} referrerPolicy="no-referrer" />
@@ -520,7 +524,10 @@ export default function App() {
                         <DJSoundCloudPlayer url={artist.scUrl} artistId={artist.id} activeAudioId={activeAudioId} setActiveAudioId={setActiveAudioId} />
                       </div>
                     </div>
-                  ));
+                  ))}
+                      <div className="shrink-0 w-4 md:w-8" aria-hidden="true" />
+                    </>
+                  );
                 })()}
               </div>
             </div>

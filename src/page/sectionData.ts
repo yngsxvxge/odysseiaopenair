@@ -21,6 +21,16 @@ export const DEFAULT_LINEUP: DJ[] = [
     scUrl: 'https://soundcloud.com/neotropicah/omeyocan-full-set-goanitzhogoa?si=67fa743eb3bd4e7caa16db54c26c6fae&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
     instagramUrl: 'https://www.instagram.com/goa.anjuna/',
     isConfirmed: true,
+  },{
+    id: 'Dopamina',
+    name: 'DOPAMINA',
+    genre: 'PROGRESSIVE',
+    time: '',
+    img: './dopamina.jpeg',
+    position: 'object-top',
+    scUrl: 'https://soundcloud.com/dopaminamusic/dopamina-beth-groove?si=8849e62260ea47278d5255417148e3c3&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+    instagramUrl: 'https://www.instagram.com/dopaminadj/',
+    isConfirmed: true,
   }
 
 ];
