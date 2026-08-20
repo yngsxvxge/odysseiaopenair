@@ -38,9 +38,9 @@ export const DEFAULT_LINEUP: DJ[] = [
 export const DEFAULT_TICKETS: TicketTier[] = [
   {
     id: 'tier2',
-    title: '1º Lote',
+    title: '2º Lote',
     subtitle: 'Meia entrada',
-    price: 'R$ 50',
+    price: 'R$ 60',
     status: 'LOTE ATUAL',
     features: ['Acesso aos 2 dias de evento', 'Área de Camping Standard', 'Água free no Chillout'],
     link: 'https://app.hi.events/event/7241/odysseia-o-exilir-de-calypso',
@@ -48,9 +48,9 @@ export const DEFAULT_TICKETS: TicketTier[] = [
     isActive: true,
   },{
     id: 'tier1',
-    title: '1º Lote ',
+    title: '2º Lote ',
     subtitle: 'Inteira',
-    price: 'R$ 100',
+    price: 'R$ 120',
     status: 'LOTE ATUAL',
     features: [],
     link: 'https://app.hi.events/event/7241/odysseia-o-exilir-de-calypso',
