@@ -64,11 +64,12 @@ export const DEFAULT_LINEUP: DJ[] = [
   },{
     id: 'osirius',
     name: 'OSIRIUS',
-    genre: '',
+    genre: 'HITECH',
     time: '',
     img: '/osirius.jpg',
     position: 'object-top',
     scUrl: 'https://soundcloud.com/osirius_dj/set-osirius-arraia-da-geka-180-214-bpm?si=edc0e2d8a43a4e0787e25e2e159e3ef7&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+     instagramUrl: 'https://www.instagram.com/haru_osirius.dj/',
     isConfirmed: true,
   },{
     id: 'maximunx',
