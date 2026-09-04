@@ -11,8 +11,8 @@ export function initializeAnalytics() {
   if (!measurementId || document.querySelector(`script[data-ga="${measurementId}"]`)) return;
 
   window.dataLayer = window.dataLayer || [];
-  window.gtag = (...args: unknown[]) => {
-    window.dataLayer?.push(args);
+  window.gtag = function (..._args: unknown[]) {
+    window.dataLayer?.push(arguments);
   };
 
   const script = document.createElement('script');
