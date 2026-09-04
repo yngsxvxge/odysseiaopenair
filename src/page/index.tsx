@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 
 import { DEFAULT_DATA, OdysseiaData } from './data';
+import { initializeAnalytics, trackAnalyticsEvent } from '../analytics';
 
 declare global {
   interface Window {
@@ -260,6 +261,15 @@ export default function App() {
   const lineupRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    initializeAnalytics();
+    const engagementTimer = window.setTimeout(() => {
+      trackAnalyticsEvent('engaged_60_seconds', { seconds: '60' });
+    }, 60000);
+
+    return () => window.clearTimeout(engagementTimer);
+  }, []);
+
+  useEffect(() => {
     const el = afterScrollytellingRef.current;
     if (!el) return;
     const observer = new IntersectionObserver(
@@ -388,6 +398,7 @@ export default function App() {
             className="hidden md:block bg-primary-container text-on-primary-container px-6 py-2 rounded-lg font-label font-bold text-sm hover:scale-105 transition-transform duration-300 active:scale-95"
             href={data.tickets.find(t => t.isActive && (t.status === 'LOTE ATUAL' || t.status === 'DISPONÍVEL'))?.link || "#ingressos"}
             target={data.tickets.find(t => t.isActive && (t.status === 'LOTE ATUAL' || t.status === 'DISPONÍVEL'))?.link.startsWith('http') ? '_blank' : undefined}
+            onClick={() => trackAnalyticsEvent('begin_checkout', { ticket_location: 'top_navigation' })}
           >
             Garantir Ingresso
           </a>
@@ -586,7 +597,7 @@ export default function App() {
                   {tier.status === 'ESGOTADO' ? (
                     <button className="w-full py-4 rounded-lg bg-outline-variant text-on-surface-variant cursor-not-allowed font-label uppercase text-xs tracking-widest" disabled>Encerrado</button>
                   ) : (
-                    <a href={tier.link} target="_blank" className={`block text-center w-full py-4 rounded-lg font-bold font-label uppercase text-sm tracking-widest transition-all ${tier.highlighted ? 'bg-primary text-on-primary hover:shadow-[0_0_20px_rgba(239,159,39,0.4)]' : 'border border-primary text-primary hover:bg-primary hover:text-on-primary'}`}>
+                    <a href={tier.link} target="_blank" onClick={() => trackAnalyticsEvent('begin_checkout', { ticket_name: tier.title, ticket_status: tier.status })} className={`block text-center w-full py-4 rounded-lg font-bold font-label uppercase text-sm tracking-widest transition-all ${tier.highlighted ? 'bg-primary text-on-primary hover:shadow-[0_0_20px_rgba(239,159,39,0.4)]' : 'border border-primary text-primary hover:bg-primary hover:text-on-primary'}`}>
                       {tier.status === 'EM BREVE' ? 'Em Breve' : 'Comprar Agora'}
                     </a>
                   )}
