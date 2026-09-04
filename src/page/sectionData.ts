@@ -334,14 +334,14 @@ export const DEFAULT_EXCURSIONS: Excursion[] = [
   },{
     id: '11',
     city: 'Petrolina',
-    excursionName: 'Vale Trips',
+    excursionName: 'Petrolina',
     state: 'PE',
     status: 'VAGAS LIMITADAS',
     departureTime: 'A definir',
     location: 'Hiperposto',
-    contactName: 'Luan Jonathan',
-    contactInstagram: 'https://www.instagram.com/valetrips874/',
-    whatsappNumber: '87981289766',
+    contactName: 'Haru Carvalho',
+    contactInstagram: 'https://www.instagram.com/haru_osirius.dj/',
+    whatsappNumber: '74988124848',
     isActive: true,
   }
   
