@@ -408,7 +408,7 @@ export default function App() {
       <Scrollytelling
         totalFrames={38}
         zoomFactor={1.35}
-        wrapperHeight="180vh"
+        wrapperHeight="140vh"
         frameUrlTemplate={(index) => `/frames/Composição 1_${String(index - 1).padStart(5, '0')}.webp`}
       >
         {/* Hero Section Content over the Canvas */}

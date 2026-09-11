@@ -58,23 +58,32 @@ export default function Scrollytelling({
     }
   }, [totalFrames, frameUrlTemplate, images]);
 
-  // Object-fit: cover drawing function
-  const drawFrame = (index: number) => {
-    if (!canvasRef.current || !images[index] || !images[index].complete) return;
+  // Blend neighboring frames so the sequence stays fluid between the available images.
+  const drawFrame = (position: number) => {
+    if (!canvasRef.current) return;
+
+    const clampedPosition = Math.max(0, Math.min(totalFrames - 1, position));
+    const firstIndex = Math.floor(clampedPosition);
+    const secondIndex = Math.min(totalFrames - 1, firstIndex + 1);
+    const blend = clampedPosition - firstIndex;
+    const firstImage = images[firstIndex];
+    const secondImage = images[secondIndex];
+
+    if (!firstImage?.complete || !secondImage?.complete) return;
     
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const img = images[index];
-    
-    // Match window size exactly
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // Resize only when the viewport changes, rather than on every animation frame.
+    if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
 
     // Calculate aspect ratios
     const canvasRatio = canvas.width / canvas.height;
-    const imgRatio = img.width / img.height;
+    const imgRatio = firstImage.width / firstImage.height;
     
     let drawWidth = canvas.width * zoomFactor;
     let drawHeight = canvas.height * zoomFactor;
@@ -94,8 +103,15 @@ export default function Scrollytelling({
     ctx.fillStyle = '#100c00'; // Dark theme bg instead of pure black sometimes looks better
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-    // Draw
-    ctx.drawImage(img, startX, startY, drawWidth, drawHeight);
+    ctx.globalAlpha = 1 - blend;
+    ctx.drawImage(firstImage, startX, startY, drawWidth, drawHeight);
+
+    if (secondIndex !== firstIndex) {
+      ctx.globalAlpha = blend;
+      ctx.drawImage(secondImage, startX, startY, drawWidth, drawHeight);
+    }
+
+    ctx.globalAlpha = 1;
   };
 
   // Scroll mapping using GSAP ScrollTrigger
@@ -111,11 +127,11 @@ export default function Scrollytelling({
       trigger: scrollWrapperRef.current,
       start: "top top",
       end: "bottom bottom",
-      scrub: 1.5, // 1.5 seconds of smooth catching up
+      scrub: 1.1, // A little more catch-up for a calmer motion
       onUpdate: (self) => {
         const frameIndex = Math.min(
           totalFrames - 1, 
-          Math.floor(self.progress * totalFrames)
+          self.progress * (totalFrames - 1)
         );
         if (animationFrameId) cancelAnimationFrame(animationFrameId);
         animationFrameId = requestAnimationFrame(() => drawFrame(frameIndex));
@@ -127,7 +143,7 @@ export default function Scrollytelling({
       if (scrollTrigger && scrollTrigger.progress !== undefined) {
         const frameIndex = Math.min(
           totalFrames - 1, 
-          Math.floor(scrollTrigger.progress * totalFrames)
+          scrollTrigger.progress * (totalFrames - 1)
         );
         drawFrame(frameIndex);
       }
@@ -148,17 +164,16 @@ export default function Scrollytelling({
 
     const canvas = canvasRef.current;
 
+    const moveX = gsap.quickTo(canvas, 'x', { duration: 0.8, ease: 'power2.out' });
+    const moveY = gsap.quickTo(canvas, 'y', { duration: 0.8, ease: 'power2.out' });
+
     const handleMouseMove = (e: MouseEvent) => {
       // Offset from -1 to 1 based on center of screen
       const xOffset = (e.clientX / window.innerWidth) * 2 - 1;
       const yOffset = (e.clientY / window.innerHeight) * 2 - 1;
 
-      gsap.to(canvas, {
-        x: -xOffset * 15, // shift up to 15px
-        y: -yOffset * 15,
-        duration: 1,
-        ease: 'power2.out',
-      });
+      moveX(-xOffset * 15); // shift up to 15px
+      moveY(-yOffset * 15);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
