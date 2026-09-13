@@ -303,9 +303,9 @@ export const DEFAULT_EXCURSIONS: Excursion[] = [
     status: 'VAGAS LIMITADAS',
     departureTime: 'A definir',
     location: 'Camaçari e Orla de Camaro ',
-    contactName: 'Ericson Lima',
-    contactInstagram: 'https://www.instagram.com/eric.limx99/',
-    whatsappNumber: '71982808712',
+    contactName: 'Thello Roots',
+    contactInstagram: 'https://www.instagram.com/thelloroots/',
+    whatsappNumber: '71991165504',
     isActive: true,
   },{
     id: '9',
@@ -342,6 +342,18 @@ export const DEFAULT_EXCURSIONS: Excursion[] = [
     contactName: 'Haru Carvalho',
     contactInstagram: 'https://www.instagram.com/haru_osirius.dj/',
     whatsappNumber: '74988124848',
+    isActive: true,
+  },{
+    id: '12',
+    city: 'Alagoinhas',
+    excursionName: 'Nave Mãe 075',
+    state: 'BA',
+    status: 'VAGAS LIMITADAS',
+    departureTime: 'A definir',
+    location: 'Alagoinhas',
+    contactName: 'Linayran Meireles',
+    contactInstagram: 'https://www.instagram.com/nave_mae075/',
+    whatsappNumber: '75982201396',
     isActive: true,
   }
   
